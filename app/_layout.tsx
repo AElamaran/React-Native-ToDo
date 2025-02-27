@@ -1,39 +1,47 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { Provider as ReduxProvider } from 'react-redux';
+import { Provider as PaperProvider } from 'react-native-paper';
+import { store } from '../src/redux/store';
+import { SafeAreaView, Text, StyleSheet, StatusBar } from 'react-native';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
+export default function Layout() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <ReduxProvider store={store}>
+      <PaperProvider>
+        {/* Ensures the background color covers the status bar */}
+        <SafeAreaView style={styles.safeArea}>
+          {/* StatusBar ensures no extra gap appears */}
+          <StatusBar backgroundColor="#FF9800" barStyle="light-content" />
+
+          <Stack 
+            screenOptions={{ 
+              headerStyle: styles.header,
+              headerTintColor: '#FFFFFF', // White text for contrast
+              headerTitleAlign: 'center',
+              headerTitle: () => <Text style={styles.headerTitle}>📋 MY TO-DO LIST</Text>, 
+            }} 
+          />
+        </SafeAreaView>
+      </PaperProvider>
+    </ReduxProvider>
   );
 }
+
+const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#FF9800', // Extends the green header to the top
+  },
+  header: {
+    backgroundColor: '#FF9800', // Green header color
+    elevation: 4, // Adds shadow for Android
+    shadowOpacity: 0.2, // Soft shadow for iOS
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    textTransform: 'uppercase',
+    letterSpacing: 1, 
+  }
+});
