@@ -10,18 +10,29 @@
 1. clone from repository
   `` https://github.com/AElamaran/React-native-ToDo-App.git``
 2. Run Following commands
-   ``npm install``
-   ``cd ToDo-App``
-   ``npm install @reduxjs/toolkit react-redux  ``
-   ``npx expo install @react-native-async-storage/async-storage``
-   ``npx expo install react-native-paper  ``
+   ```sh
+   npm install
+   ```
+   ```sh
+   cd ToDo-App
+   ```
+    ```sh
+    npm install @reduxjs/toolkit react-redux
+   ```
+   ```sh
+   npx expo install @react-native-async-storage/async-storage
+   ```
+   ```sh
+   npx expo install react-native-paper `
+    ``
 
 
 
 
-3. Run The App
+4. Run The App
 
-   ```npx expo start                               
+   ```sh
+   npx expo start                               
    ```
 
 ## Functionalities
