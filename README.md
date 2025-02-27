@@ -1,7 +1,7 @@
 # Welcome to To Do  app 👋
 
 ## Image
-![Image](img1.jpg)
+<img src=img1.jpg alt="Image" width="250" height="400">
 
 ## Used Technologies
 1. React native Expo with file base routing
