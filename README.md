@@ -23,10 +23,8 @@
    npx expo install @react-native-async-storage/async-storage
    ```
    ```sh
-   npx expo install react-native-paper `
-    ``
-
-
+   npx expo install react-native-paper
+    ```
 
 
 4. Run The App
