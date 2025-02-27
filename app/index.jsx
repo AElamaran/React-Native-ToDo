@@ -11,12 +11,12 @@ export default function HomeScreen() {
   const { loading, error } = useSelector(state => state.todos);
 
   useEffect(() => {
-    dispatch(fetchTodos()); // ✅ Load todos from AsyncStorage
+    dispatch(fetchTodos()); 
   }, [dispatch]);
 
   return (
     <View style={styles.container}>
-      {/* ✅ Show loading indicator with better design */}
+     
       {loading && (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color="#007BFF" />
@@ -24,7 +24,7 @@ export default function HomeScreen() {
         </View>
       )}
 
-      {/* ✅ Show error message in a modern box */}
+    
       {error && (
         <View style={styles.errorBox}>
           <Text style={styles.errorText}>⚠️ {error}</Text>
